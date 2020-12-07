@@ -1,1 +1,1 @@
-# go-structure
+# Webservice
