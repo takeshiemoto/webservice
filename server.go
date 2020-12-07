@@ -5,7 +5,3 @@ type Post struct {
 	Content string `json:"content"`
 	Author  string `json:"author"`
 }
-
-func main() {
-
-}
