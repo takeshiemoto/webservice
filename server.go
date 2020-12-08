@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 	"path"
 	"strconv"
@@ -17,8 +18,13 @@ func main() {
 	server := http.Server{
 		Addr: "127.0.0.1:8080",
 	}
+	http.HandleFunc("/",rootRequest)
 	http.HandleFunc("/post/", handleRequest)
 	server.ListenAndServe()
+}
+
+func rootRequest(w http.ResponseWriter, r *http.Request) {
+	fmt.Println("Hello world")
 }
 
 func handleRequest(w http.ResponseWriter, r *http.Request) {
@@ -59,10 +65,14 @@ func handleGet(w http.ResponseWriter, r *http.Request) (err error) {
 
 func handlePost(w http.ResponseWriter, r *http.Request) (err error) {
 	len := r.ContentLength
+	// バイト列を作成
 	body := make([]byte, len)
+	// バイト列にリクエスト本体を読み込み
 	r.Body.Read(body)
 	var post Post
+	// バイト列を構造体Postに組み換え
 	json.Unmarshal(body, &post)
+	// データベースのレコードを作成
 	err = post.create()
 	if err != nil {
 		return
