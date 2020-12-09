@@ -10,16 +10,28 @@ go build
 docker-compose up
 ```
 
+Run
+
 ```
 go run *.go
 ```
 
-## DB
+## Setup DB
+
+Login docker container
+```
+docker exec -i -t webservice_postgres_1 bash
+```
+
+Login postgres and create role
+```
+su - postgress
+psql
+CREATE DATABASE gwp OWNER gwp;
+```
+
+Login user
 
 ```
-docker exec -i -t <コンテナ名> bash
-```
-
-```
-psql -U gwp -d gw
+psql --username=gwp --password --dbname=gwp
 ```
