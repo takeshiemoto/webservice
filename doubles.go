@@ -1,9 +1,9 @@
 package main
 
 type FakePost struct {
-	ID int
+	ID      int
 	Content string
-	Author string
+	Author  string
 }
 
 func (post *FakePost) fetch(id int) (err error) {

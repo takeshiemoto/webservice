@@ -15,7 +15,7 @@ func TestHandleGet(t *testing.T) {
 	request, _ := http.NewRequest("GET", "/post/1", nil)
 	mux.ServeHTTP(writer, request)
 
-	if writer.Code != 200{
+	if writer.Code != 200 {
 		t.Errorf("Response code is %v", writer.Code)
 	}
 
